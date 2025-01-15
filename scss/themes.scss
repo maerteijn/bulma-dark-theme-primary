@@ -8,6 +8,7 @@ $primary-dark: #00008B; // dark blue
 
 @mixin light-theme-config {
   @include light.light-theme;
+  // Add overrides here
 }
 
 @mixin dark-theme-config {
@@ -24,17 +25,23 @@ $primary-dark: #00008B; // dark blue
   @include setup.setup-theme;
 }
 
-// Include the prefers-color-scheme: dark and [data-theme=dark], .theme-dark sections for our dark theme
+// prefers-color-scheme: light
+@include cv.system-theme($name: "light") {
+  @include light-theme-config;
+}
+
+// prefers-color-scheme: dark
 @include cv.system-theme($name: "dark") {
   @include dark-theme-config;
 }
 
-// :root, [data-theme=light], .theme-light
+// [data-theme=light], .theme-light
 @include cv.bulma-theme($name: "light") {
-  @include light.light-theme;
+  @include light-theme-config;
   @include setup.setup-theme;
 }
 
+// [data-theme=dark], .theme-dark
 @include cv.bulma-theme($name: "dark") {
   @include dark-theme-config;
   @include setup.setup-theme;
